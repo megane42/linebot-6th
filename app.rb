@@ -228,7 +228,7 @@ post '/webhook' do
           messages = error_message
         else
           messages = [
-            text_message("#{area_str[area]} #{day_str[day] の出演者 : }"),
+            text_message("#{area_str[area]} #{day_str[day]} の出演者 : "),
             text_message(cast[area][day][:cute].join("\n")),
             text_message(cast[area][day][:cool].join("\n")),
             text_message(cast[area][day][:passion].join("\n")),
