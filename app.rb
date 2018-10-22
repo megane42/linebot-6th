@@ -210,7 +210,7 @@ post '/webhook' do
       when Line::Bot::Event::MessageType::Text
         messages  = []
         area, day = extract_where_and_when_from(event.message['text'])
-        if area && day
+        unless area && day
           messages = error_message
         else
           messages = [
