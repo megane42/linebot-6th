@@ -189,6 +189,20 @@ def extract_where_and_when_from(text)
   [area, day]
 end
 
+def area_str
+  {
+    metlife: 'メッツライフドーム',
+    nagoya: 'ナゴヤドーム',
+  }
+end
+
+def day_str
+  {
+    day1: '1日目',
+    day2: '2日目',
+  }
+end
+
 def error_message
   text_message('ちょっと何言ってるのかわからないですね。')
 end
@@ -214,6 +228,7 @@ post '/webhook' do
           messages = error_message
         else
           messages = [
+            text_message("#{area_str[area]} #{day_str[day] の出演者 : }"),
             text_message(cast[area][day][:cute].join("\n")),
             text_message(cast[area][day][:cool].join("\n")),
             text_message(cast[area][day][:passion].join("\n")),
