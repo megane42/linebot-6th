@@ -171,6 +171,20 @@ def cast
   }
 end
 
+def area_str
+  {
+    metlife: 'メッツライフドーム',
+    nagoya: 'ナゴヤドーム',
+  }
+end
+
+def day_str
+  {
+    day1: '1日目',
+    day2: '2日目',
+  }
+end
+
 def extract_where_and_when_from(text)
   area = day = nil
 
@@ -189,31 +203,11 @@ def extract_where_and_when_from(text)
   [area, day]
 end
 
-def area_str
-  {
-    metlife: 'メッツライフドーム',
-    nagoya: 'ナゴヤドーム',
-  }
-end
-
-def day_str
-  {
-    day1: '1日目',
-    day2: '2日目',
-  }
-end
-
-def error_message
-  text_message('ちょっと何言ってるのかわからないですね。')
-end
-
 post '/webhook' do
   body      = request.body.read
   signature = request.env['HTTP_X_LINE_SIGNATURE']
   unless client.validate_signature(body, signature)
-    error 400 do
-      'Bad Request'
-    end
+    error 400 do 'Bad Request' end
   end
 
   events = client.parse_events_from(body)
@@ -222,19 +216,19 @@ post '/webhook' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
-        messages  = []
         area, day = extract_where_and_when_from(event.message['text'])
         unless area && day
-          messages = error_message
+          puts "An event is ignored due to the lack of informations (area: #{area}, day: #{day})."
         else
           messages = [
-            text_message("#{area_str[area]} #{day_str[day]} の出演者 : "),
+            text_message("もしかして #{area_str[area]} #{day_str[day]} の話してる？"),
             text_message(cast[area][day][:cute].join("\n")),
             text_message(cast[area][day][:cool].join("\n")),
             text_message(cast[area][day][:passion].join("\n")),
           ]
+          client.reply_message(event['replyToken'], messages)
+          puts "An message is successfully replied (area: #{area}, day: #{day})."
         end
-        client.reply_message(event['replyToken'], messages)
       end
     end
   end
