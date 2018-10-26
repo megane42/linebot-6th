@@ -10,6 +10,10 @@
 
 ![qrcode](https://user-images.githubusercontent.com/8451003/47545852-610e1700-d929-11e8-968a-f74c11d69818.png)
 
+## 内輪向け 発表資料
+
+* https://qiita.com/megane42/private/a97f298082dbc7814b0d
+
 ## 開発者向け（＝ 自分向け）メモ
 
 ### Heroku アプリ作成（初回のみ）
