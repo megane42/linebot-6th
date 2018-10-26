@@ -8,7 +8,7 @@
 
 ## 友達登録
 
-![qrcode](https://qr-official.line.me/M/jmCLYHzxNv.png)
+![qrcode](https://user-images.githubusercontent.com/8451003/47545852-610e1700-d929-11e8-968a-f74c11d69818.png)
 
 ## 開発者向け（＝ 自分向け）メモ
 
