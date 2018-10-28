@@ -3,7 +3,7 @@
 module Linebot6th
 
   module Area
-    METLIFE = 'メッツライフドーム'
+    METLIFE = 'メットライフドーム'
     NAGOYA  = 'ナゴヤドーム'
   end
 
@@ -169,7 +169,7 @@ module Linebot6th
   def self.extract_where_and_when_from(text)
     area = day = nil
 
-    if text.match(/メッツ|メッツライフ|メラド|埼玉|西武/)
+    if text.match(/メット|メットライフ|メッツ|メッツライフ|メラド|埼玉|西武/)
       area = Area::METLIFE
     elsif text.match(/ナゴヤ|名古屋|愛知/)
       area = Area::NAGOYA
