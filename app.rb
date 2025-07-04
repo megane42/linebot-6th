@@ -17,10 +17,6 @@ def text_message(text)
   }
 end
 
-get '/test' do
-  'test'
-end
-
 post '/webhook' do
   body = request.body.read
   signature = request.env['HTTP_X_LINE_SIGNATURE']
