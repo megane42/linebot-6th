@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     base64 (0.3.0)
-    line-bot-api (2.0.0)
+    line-bot-api (1.30.0)
       base64 (~> 0.2)
       multipart-post (~> 2.4)
     logger (1.7.0)
@@ -39,7 +39,7 @@ PLATFORMS
 
 DEPENDENCIES
   base64
-  line-bot-api
+  line-bot-api (~> 1.30.0)
   minitest
   puma
   rackup
